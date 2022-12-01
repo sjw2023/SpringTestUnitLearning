@@ -16,12 +16,7 @@ class StudyTest {
         Study study = new Study();
         assertNotNull(study);
         //1 는 비교할 결과, 2 는 실질 리턴값, 3 은 에러시 출력 메시지
-        assertEquals(StudyStatus.DRAFT, study.getStatus(), new Supplier<String>() {
-            @Override
-            public String get() {
-                return "에러시 출력할 메시지";
-            }
-        });
+        assertEquals(StudyStatus.DRAFT, study.getStatus(), () -> "에러시 출력 메시지");
     }
 
     @Test
