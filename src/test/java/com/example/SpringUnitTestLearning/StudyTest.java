@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudyTest {
     //Java reflection used, so we don't need private accessor here
     @Test
+    @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study(){
         Study study = new Study();
         assertNotNull(study);
