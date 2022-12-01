@@ -4,18 +4,20 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Replace underscores in method name with whitespace
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
     //Java reflection used, so we don't need private accessor here
     @Test
-    void create(){
+    void create_new_study(){
         Study study = new Study();
         assertNotNull(study);
         System.out.println("create");
     }
     @Test
     //Disable test annotation
-    @Disabled
-    void create1(){
+    //@Disabled
+    void create_new_study_again(){
         System.out.println("create1");
     }
     //execute once before all test
