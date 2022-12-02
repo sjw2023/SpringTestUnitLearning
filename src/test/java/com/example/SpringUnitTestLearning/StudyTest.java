@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 //Replace underscores in method name with whitespace
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -18,8 +19,18 @@ class StudyTest {
     void create_new_study() {
         //This test will stop at assumeTrue() since TEST_ENV is not LOCAL
         assumeTrue("LOCAL".equalsIgnoreCase(System.getenv("TEST_ENV")));
-        Study actual = new Study(10);
-        assertThat(actual.getLimit()).isGreaterThan(0);
+
+        //or you can set condition with assumingThat() with lambda
+        //for each case if condition is satisfied than assertThat will be executed
+        assumingThat("LOCAL".equalsIgnoreCase(System.getenv("TEST_ENV")), () -> {
+            Study actual = new Study(10);
+            assertThat(actual.getLimit()).isGreaterThan(0);
+        });
+
+        assumingThat("joowons".equalsIgnoreCase(System.getenv("TEST_ENV")), () -> {
+            Study actual = new Study(10);
+            assertThat(actual.getLimit()).isGreaterThan(0);
+        });
     }
 
     @Test
