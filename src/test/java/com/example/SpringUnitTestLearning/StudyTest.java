@@ -43,10 +43,10 @@ class StudyTest {
     @DisplayName("Parameterized test")
     //Refer the first parameter in @ValueSource
     @ParameterizedTest(name = "{index} {displayName} message={0}")
-    @ValueSource(strings = {"Weather", "is", "getting", "colder"})
-    void parameterizedTest(String message){
+    @ValueSource(ints = {10, 20, 40})
+    void parameterizedTest(Study study){
         //Will print 4 times
-        System.out.println(message);
+        System.out.println(study.getLimit());
     }
 
     //execute once before all test
