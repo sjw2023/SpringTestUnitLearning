@@ -2,6 +2,8 @@ package com.example.SpringUnitTestLearning;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.Duration;
 import java.util.function.Supplier;
@@ -36,6 +38,15 @@ class StudyTest {
     void repeatTest(RepetitionInfo repetitionInfo){
         System.out.println("Test " + repetitionInfo.getCurrentRepetition() +"/"
         + repetitionInfo.getTotalRepetitions());
+    }
+
+    @DisplayName("Parameterized test")
+    //Refer the first parameter in @ValueSource
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
+    @ValueSource(strings = {"Weather", "is", "getting", "colder"})
+    void parameterizedTest(String message){
+        //Will print 4 times
+        System.out.println(message);
     }
 
     //execute once before all test
