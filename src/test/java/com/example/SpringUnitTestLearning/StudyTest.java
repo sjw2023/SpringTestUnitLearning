@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import java.time.Duration;
 import java.util.function.Supplier;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 //Replace underscores in method name with whitespace
@@ -15,10 +16,8 @@ class StudyTest {
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
         //Can end the test even before 300ms if test fail
-        assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
-            new Study(10);
-            Thread.sleep(300);
-        });
+        Study actual = new Study(10);
+        assertThat(actual.getLimit()).isGreaterThan(0);
     }
 
     @Test
