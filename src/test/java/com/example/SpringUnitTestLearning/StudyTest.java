@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 //Replace underscores in method name with whitespace
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -15,7 +16,8 @@ class StudyTest {
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
-        //Can end the test even before 300ms if test fail
+        //This test will stop at assumeTrue() since TEST_ENV is not LOCAL
+        assumeTrue("LOCAL".equalsIgnoreCase(System.getenv("TEST_ENV")));
         Study actual = new Study(10);
         assertThat(actual.getLimit()).isGreaterThan(0);
     }
