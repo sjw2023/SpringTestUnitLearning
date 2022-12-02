@@ -15,19 +15,16 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
     //Java reflection used, so we don't need private accessor here
-    @Test
+
+    @FastTest
     @DisplayName("한글도 됨, 이모지도됨 ")
-    //This tag means a test create_new_study will finish in short time
-    @Tag("fast")
     void create_new_study() {
             Study actual = new Study(10);
             assertThat(actual.getLimit()).isGreaterThan(0);
     }
 
-    @Test
-    //This tag means that a test create_new_study_again will consume long time
-    //In CI environment we divide test cases into slow one and fast one
-    @Tag("slow")
+    @SlowTest
+    @DisplayName("Making study group Slow ")
     void create_new_study_again() {
         System.out.println("create1");
     }
