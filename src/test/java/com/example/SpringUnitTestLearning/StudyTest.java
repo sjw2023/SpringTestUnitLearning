@@ -17,30 +17,17 @@ class StudyTest {
     //Java reflection used, so we don't need private accessor here
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
-    //JRE 8 9 10 11 test
-    @EnabledOnJre({JRE.JAVA_8,JRE.JAVA_9,JRE.JAVA_10,JRE.JAVA_11})
+    //This tag means a test create_new_study will finish in short time
+    @Tag("fast")
     void create_new_study() {
-        //This test will stop at assumeTrue() since TEST_ENV is not LOCAL
-        assumeTrue("LOCAL".equalsIgnoreCase(System.getenv("TEST_ENV")));
-
-        //or you can set condition with assumingThat() with lambda
-        //for each case if condition is satisfied than assertThat will be executed
-        assumingThat("LOCAL".equalsIgnoreCase(System.getenv("TEST_ENV")), () -> {
             Study actual = new Study(10);
             assertThat(actual.getLimit()).isGreaterThan(0);
-        });
-
-        assumingThat("joowons".equalsIgnoreCase(System.getenv("TEST_ENV")), () -> {
-            Study actual = new Study(10);
-            assertThat(actual.getLimit()).isGreaterThan(0);
-        });
     }
 
     @Test
-        //Disable test annotation
-        //@Disabled
-    //Test for JRE 1 2 3 4 5
-    @EnabledOnJre(JRE.OTHER)
+    //This tag means that a test create_new_study_again will consume long time
+    //In CI environment we divide test cases into slow one and fast one
+    @Tag("slow")
     void create_new_study_again() {
         System.out.println("create1");
     }
