@@ -14,8 +14,8 @@ class StudyTest {
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
-        //check if with 300ms time constraints
-        assertTimeout(Duration.ofMillis(100), () -> {
+        //Can end the test even before 300ms if test fail
+        assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
             new Study(10);
             Thread.sleep(300);
         });
