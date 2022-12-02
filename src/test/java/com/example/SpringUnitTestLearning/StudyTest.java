@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ArgumentConversionException;
+import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.converter.SimpleArgumentConverter;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -46,7 +47,7 @@ class StudyTest {
     //Refer the first parameter in @ValueSource
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(ints = {10, 20, 40})
-    void parameterizedTest(Study study){
+    void parameterizedTest(@ConvertWith(StudyConverter.class) Study study){
         //Will print 4 times
         System.out.println(study.getLimit());
     }
