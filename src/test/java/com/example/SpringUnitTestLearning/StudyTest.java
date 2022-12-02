@@ -3,6 +3,8 @@ package com.example.SpringUnitTestLearning;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ArgumentConversionException;
+import org.junit.jupiter.params.converter.SimpleArgumentConverter;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.Duration;
@@ -47,6 +49,14 @@ class StudyTest {
     void parameterizedTest(Study study){
         //Will print 4 times
         System.out.println(study.getLimit());
+    }
+
+    static class StudyConverter extends SimpleArgumentConverter{
+        @Override
+        protected Object convert(Object source, Class<?> targetType) throws ArgumentConversionException {
+            assertEquals(Study.class,targetType,"Can only convert to Study");
+            return new Study(Integer.parseInt(source.toString()));
+        }
     }
 
     //execute once before all test
