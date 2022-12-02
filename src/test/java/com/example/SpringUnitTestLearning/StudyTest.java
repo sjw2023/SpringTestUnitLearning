@@ -13,10 +13,13 @@ class StudyTest {
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
-        Study study = new Study();
-        assertNotNull(study);
-        //1 는 비교할 결과, 2 는 실질 리턴값, 3 은 에러시 출력 메시지
-        assertEquals(StudyStatus.DRAFT, study.getStatus(), () -> "에러시 출력 메시지");
+        Study study = new Study(-10);
+        assertAll(
+                () -> assertNotNull(study),
+                //1 는 비교할 결과, 2 는 실질 리턴값, 3 은 에러시 출력 메시지
+                () -> assertEquals(StudyStatus.DRAFT, study.getStatus(), () -> "에러시 출력 메시지"),
+                () -> assertTrue(study.getLimit() > 0, "테스트 결과 에러시 출력 메시지")
+        );
     }
 
     @Test
