@@ -29,6 +29,15 @@ class StudyTest {
         System.out.println("create1");
     }
 
+    //Repeat test 10 times
+    //RepetitionInfo repetition information object
+    @DisplayName("Display name string")
+    @RepeatedTest(value = 10, name = "{displayName} {currentRepetition}/{totalRepetition}")
+    void repeatTest(RepetitionInfo repetitionInfo){
+        System.out.println("Test " + repetitionInfo.getCurrentRepetition() +"/"
+        + repetitionInfo.getTotalRepetitions());
+    }
+
     //execute once before all test
     //need static
     @BeforeAll
