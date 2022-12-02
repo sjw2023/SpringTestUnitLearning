@@ -14,8 +14,8 @@ class StudyTest {
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
-        //check if "new Study(10) is done in 10 sec
-        assertTimeout(Duration.ofSeconds(10), () -> {
+        //check if with 300ms time constraints
+        assertTimeout(Duration.ofMillis(100), () -> {
             new Study(10);
             Thread.sleep(300);
         });
