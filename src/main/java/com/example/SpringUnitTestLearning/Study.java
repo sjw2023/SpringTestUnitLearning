@@ -4,6 +4,12 @@ public class Study {
 
     private final StudyStatus status = StudyStatus.DRAFT;
     private int limit;
+    private String name;
+
+    public Study(int limit, String name){
+        this.limit = limit;
+        this.name = name;
+    }
 
     public Study(int limit){
         if(limit < 0){
@@ -16,5 +22,17 @@ public class Study {
     }
     public StudyStatus getStatus(){
         return this.status;
+    }
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Study{" +
+                "status=" + status +
+                ", limit=" + limit +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
