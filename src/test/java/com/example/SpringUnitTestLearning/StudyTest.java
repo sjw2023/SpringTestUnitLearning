@@ -2,6 +2,7 @@ package com.example.SpringUnitTestLearning;
 
 import org.junit.jupiter.api.*;
 
+import java.time.Duration;
 import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,9 +14,10 @@ class StudyTest {
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Study(-10));
-        String message = e.getMessage();
-        assertEquals("limit은 0보다 커야한다.", message);
+        //check if "new Study(10) is done in 10 sec
+        assertTimeout(Duration.ofSeconds(10), () ->
+            new Study(10)
+        );
     }
 
     @Test
