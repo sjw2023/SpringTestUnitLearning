@@ -13,7 +13,9 @@ class StudyTest {
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
-        assertThrows(IllegalArgumentException.class, () -> new Study(-10));
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Study(-10));
+        String message = e.getMessage();
+        assertEquals("limit은 0보다 커야한다.", message);
     }
 
     @Test
