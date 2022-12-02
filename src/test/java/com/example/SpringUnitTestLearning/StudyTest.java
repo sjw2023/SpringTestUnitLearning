@@ -1,6 +1,9 @@
 package com.example.SpringUnitTestLearning;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import java.time.Duration;
 import java.util.function.Supplier;
@@ -16,6 +19,8 @@ class StudyTest {
     //Java reflection used, so we don't need private accessor here
     @Test
     @DisplayName("한글도 됨, 이모지도됨 ")
+    //this will allow execution of test on MacOS or Linux system
+    @EnabledOnOs({OS.MAC,OS.LINUX})
     void create_new_study() {
         //This test will stop at assumeTrue() since TEST_ENV is not LOCAL
         assumeTrue("LOCAL".equalsIgnoreCase(System.getenv("TEST_ENV")));
@@ -36,6 +41,8 @@ class StudyTest {
     @Test
         //Disable test annotation
         //@Disabled
+    //this test will not be executed on MacOS System
+    @DisabledOnOs(OS.MAC)
     void create_new_study_again() {
         System.out.println("create1");
     }
