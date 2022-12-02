@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.aggregator.AggregateWith;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.aggregator.ArgumentsAggregationException;
 import org.junit.jupiter.params.aggregator.ArgumentsAggregator;
@@ -53,8 +54,7 @@ class StudyTest {
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     //One pair per input
     @CsvSource({"10, '자바 스터디'", "20, 스프링"})
-    void parameterizedTest(ArgumentsAccessor argumentsAccessor){
-        Study study = new Study( argumentsAccessor.getInteger(0), argumentsAccessor.getString(1));
+    void parameterizedTest(@AggregateWith(StudyAggregator.class) Study study){
         System.out.println(study);
     }
 
