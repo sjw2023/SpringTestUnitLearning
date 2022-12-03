@@ -12,6 +12,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,6 +32,9 @@ class StudyServiceTest {
         memberService.voidMethod();
 
         assertEquals("joowon@gmail.com", optional.get().getEmail());
+
+        when(memberService.findById(1L)).thenThrow(IllegalArgumentException.class);
+        doThrow(IllegalArgumentException.class).when(memberService.findById(1L));
 
         StudyService studyService = new StudyService( memberService, studyRepository );
         assertNotNull(studyService);
