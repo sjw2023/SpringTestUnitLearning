@@ -74,14 +74,14 @@ class StudyTest {
     //execute once before all test
     //need static
     @BeforeAll
-    static void beforeAll() {
+    void beforeAll() {
         System.out.println("before all");
     }
 
     //After all test execute once
     //Must static method
     @AfterAll
-    static void afterAll() {
+    void afterAll() {
         System.out.println("after all");
     }
 
