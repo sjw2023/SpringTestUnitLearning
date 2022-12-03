@@ -25,17 +25,19 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 //Replace underscores in method name with whitespace
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
+    //class member field value seems to be shared among test methods
     int value = 1;
     @FastTest
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
+            //first value++ statement
             System.out.println(value++);
             Study actual = new Study(10);
             assertThat(actual.getLimit()).isGreaterThan(0);
     }
-
     @SlowTest
     @DisplayName("Making study group Slow ")
+    //Second value statement, so the value will have 2 in some point if value is being shared
     void create_new_study_again() {
         System.out.println(value++);
     }
