@@ -32,6 +32,7 @@ class StudyTest {
     void create_new_study() {
             //first value++ statement
             System.out.println(value++);
+            System.out.println(this);
             Study actual = new Study(10);
             assertThat(actual.getLimit()).isGreaterThan(0);
     }
@@ -40,6 +41,7 @@ class StudyTest {
     //Second value statement, so the value will have 2 in some point if value is being shared
     void create_new_study_again() {
         System.out.println(value++);
+        System.out.println(this);
     }
 
     //Repeat test 10 times
