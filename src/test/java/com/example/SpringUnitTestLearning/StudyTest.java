@@ -39,7 +39,8 @@ class StudyTest {
     @SlowTest
     @DisplayName("Making study group Slow ")
     //Second value statement, so the value will have 2 in some point if value is being shared
-    void create_new_study_again() {
+    void create_new_study_again() throws InterruptedException {
+        Thread.sleep(1005L);
         System.out.println(value++);
         System.out.println(this);
     }
