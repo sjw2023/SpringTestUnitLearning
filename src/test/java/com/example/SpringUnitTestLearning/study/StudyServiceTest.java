@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class StudyServiceTest {
@@ -18,7 +19,13 @@ class StudyServiceTest {
     @Mock
     StudyRepository studyRepository;
     @Test
-    void createStudyService(){
+    void createNewStudy(){
+        Member member = new Member();
+        member.setId(1L);
+        member.setEmail("joowon@gmail.com");
+        when(memberService.findById(1L)).thenReturn(Optional.of(member));
+
+
         Optional<Member> optional = memberService.findById(1L);
         memberService.voidMethod();
 
