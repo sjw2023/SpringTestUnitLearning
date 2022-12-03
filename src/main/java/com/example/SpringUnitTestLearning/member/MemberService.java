@@ -2,8 +2,8 @@ package com.example.SpringUnitTestLearning.member;
 
 import com.example.SpringUnitTestLearning.domain.Member;
 
-public interface MemberService {
-    void validate(Long memberId) throws InvalidMemberException;
+import java.util.Optional;
 
-    Member findById(Long memberId) throws MemberNotFoundException;
+public interface MemberService {
+    Optional<Member> findById(Long memberId) throws MemberNotFoundException;
 }
