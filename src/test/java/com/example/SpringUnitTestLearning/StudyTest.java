@@ -36,7 +36,7 @@ class StudyTest {
     }
     //Lower value has more priority
     @Order(1)
-    @SlowTest
+    @Test
     @DisplayName("Making study group Slow ")
     //Second value statement, so the value will have 2 in some point if value is being shared
     void create_new_study_again() throws InterruptedException {
