@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
+    //it is useful when extension has many fields
     @RegisterExtension
     static FindSlowTestExtension findSlowTestExtension = new FindSlowTestExtension(1005L);
     //class member field value seems to be shared among test methods
