@@ -18,9 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
 //Replace underscores in method name with whitespace
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
     //class member field value seems to be shared among test methods
     int value = 1;
+    @Order(2)
     @FastTest
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
@@ -30,6 +32,8 @@ class StudyTest {
             Study actual = new Study(10);
             assertThat(actual.getLimit()).isGreaterThan(0);
     }
+    //Lower value has more priority
+    @Order(1)
     @SlowTest
     @DisplayName("Making study group Slow ")
     //Second value statement, so the value will have 2 in some point if value is being shared
