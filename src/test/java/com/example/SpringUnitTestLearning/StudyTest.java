@@ -1,5 +1,6 @@
 package com.example.SpringUnitTestLearning;
 
+import com.example.SpringUnitTestLearning.domain.Study;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterContext;
@@ -35,7 +36,7 @@ class StudyTest {
             System.out.println(value++);
             System.out.println(this);
             Study actual = new Study(10);
-            assertThat(actual.getLimit()).isGreaterThan(0);
+            assertThat(actual.getLimitCount()).isGreaterThan(0);
     }
     //Lower value has more priority
     @Order(1)
