@@ -25,11 +25,11 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 //Replace underscores in method name with whitespace
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
-    //Java reflection used, so we don't need private accessor here
-
+    int value = 1;
     @FastTest
     @DisplayName("한글도 됨, 이모지도됨 ")
     void create_new_study() {
+            System.out.println(value++);
             Study actual = new Study(10);
             assertThat(actual.getLimit()).isGreaterThan(0);
     }
@@ -37,7 +37,7 @@ class StudyTest {
     @SlowTest
     @DisplayName("Making study group Slow ")
     void create_new_study_again() {
-        System.out.println("create1");
+        System.out.println(value++);
     }
 
     //Repeat test 10 times
