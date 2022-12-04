@@ -12,4 +12,6 @@ public interface MemberService {
     void notify(Study save);
 
     void validate(Object any);
+
+    void notify(Member member);
 }
