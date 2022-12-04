@@ -1,6 +1,7 @@
 package com.example.SpringUnitTestLearning.study;
 
 import com.example.SpringUnitTestLearning.domain.Member;
+import com.example.SpringUnitTestLearning.domain.Study;
 import com.example.SpringUnitTestLearning.member.MemberService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,5 +36,25 @@ class StudyServiceTest {
             memberService.findById(1L);
         });
         assertEquals(Optional.empty(), memberService.findById(1L));
+    }
+    @Test
+    void createNewStudy() {
+        StudyService studyService = new StudyService(memberService, studyRepository);
+        assertNotNull(studyService);
+
+        Member member = new Member();
+        member.setId(1L);
+        member.setEmail("joowon@gmail.com");
+
+        Study study = new study(10, "테스트");
+
+        when(memberService.findById(any())).thenReturn(Optional.of(member));
+        when(studyRepository.save(study)).thenReturn(study);
+
+        studyService.createNewStudy(1L, study);
+
+        assertEquals(member, study.getOwner());
+
+
     }
 }
