@@ -66,5 +66,7 @@ class StudyServiceTest {
         InOrder inOrder = inOrder(memberService);
         inOrder.verify(memberService).notify(study);
         inOrder.verify(memberService).notify(member);
+
+        verifyNoMoreInteractions(memberService);
     }
 }
