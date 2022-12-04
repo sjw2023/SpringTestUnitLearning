@@ -12,7 +12,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class StudyServiceTest {
@@ -55,6 +55,7 @@ class StudyServiceTest {
 
         assertEquals(member, study.getOwner());
 
-
+        //See if notify executed
+        verify(memberService, times(1)).notify(study);
     }
 }
