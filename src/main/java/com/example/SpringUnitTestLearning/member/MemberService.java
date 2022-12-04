@@ -10,4 +10,6 @@ public interface MemberService {
     void voidMethod();
 
     void notify(Study save);
+
+    void validate(Object any);
 }

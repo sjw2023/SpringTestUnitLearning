@@ -46,7 +46,7 @@ class StudyServiceTest {
         member.setId(1L);
         member.setEmail("joowon@gmail.com");
 
-        Study study = new study(10, "테스트");
+        Study study = new Study(10, "테스트");
 
         when(memberService.findById(any())).thenReturn(Optional.of(member));
         when(studyRepository.save(study)).thenReturn(study);
@@ -57,5 +57,7 @@ class StudyServiceTest {
 
         //See if notify executed
         verify(memberService, times(1)).notify(study);
+        //Verify non-execution of memberService.validate()
+        verify(memberService, never()).validate(any());
     }
 }
