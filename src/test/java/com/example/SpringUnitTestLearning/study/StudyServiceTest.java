@@ -40,6 +40,7 @@ class StudyServiceTest {
     }
     @Test
     void createNewStudy() {
+        //Given
         StudyService studyService = new StudyService(memberService, studyRepository);
         assertNotNull(studyService);
 
@@ -52,11 +53,12 @@ class StudyServiceTest {
         when(memberService.findById(any())).thenReturn(Optional.of(member));
         when(studyRepository.save(study)).thenReturn(study);
 
+        //When
         studyService.createNewStudy(1L, study);
 
         assertEquals(member, study.getOwner());
 
-        //See if notify executed
+        //Then
         verify(memberService, times(1)).notify(study);
         verify(memberService, times(1)).notify(member);
         //Verify non-execution of memberService.validate()
