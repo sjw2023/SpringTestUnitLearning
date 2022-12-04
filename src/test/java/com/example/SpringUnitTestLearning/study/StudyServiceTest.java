@@ -9,10 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,17 +24,16 @@ class StudyServiceTest {
         Member member = new Member();
         member.setId(1L);
         member.setEmail("joowon@gmail.com");
-        when(memberService.findById(any())).thenReturn(Optional.of(member));
+        when(memberService.findById(any()))
+                .thenReturn(Optional.of(member))
+                .thenThrow(IllegalArgumentException.class)
+                .thenReturn(Optional.empty());
 
-        Optional<Member> optional = memberService.findById(1L);
-        memberService.voidMethod();
-
-        assertEquals("joowon@gmail.com", optional.get().getEmail());
-
-        when(memberService.findById(1L)).thenThrow(IllegalArgumentException.class);
-        doThrow(IllegalArgumentException.class).when(memberService.findById(1L));
-
-        StudyService studyService = new StudyService( memberService, studyRepository );
-        assertNotNull(studyService);
+        Optional<Member> opt = memberService.findById(1L);
+        assertEquals("joowon@gmail.com", opt.get().getEmail());
+        assertThrows(IllegalArgumentException.class, ()->{
+            memberService.findById(1L);
+        });
+        assertEquals(Optional.empty(), memberService.findById(1L));
     }
 }
